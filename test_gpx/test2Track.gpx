@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<gpx version="1.1"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 
+  http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <name>New Route</name>
+  <trk>
+<trkseg>
+    <trkpt lat="47.87214396888731" lon="-111.2255859375"></trkpt>
+    <trkpt lat="56.68037378950136" lon="-119.267578125"></trkpt>
+    <trkpt lat="54.559322587438636" lon="-120.03662109375"></trkpt>
+    <trkpt lat="54.04648911335576" lon="-120.2783203125"></trkpt>
+    <trkpt lat="54.12382170046237" lon="-121.22314453125"></trkpt>
+    <trkpt lat="55.37911044801047" lon="-122.27783203125"></trkpt>
+    <trkpt lat="56.9569571133683" lon="-122.2119140625"></trkpt>
+</trkseg>
+  </trk>
+</gpx>

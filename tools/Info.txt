@@ -1,0 +1,23 @@
+Scripts Encryptor - Encoder
+ScrEnc.EXE
+"JavaScript, C/C++ Encryptor/Decrypter - 3.0.2.1"
+(Tested on Windows 2k/XP)
+Dennis A. Babkin
+[Copyright (C) 2003, 2004]
+
+DESCRIPTION:
+================
+Scripts Encryptor is a handy utility to scramble (obfuscate) HTML, JavaScript/JScript, C/C++/MFC code. Unlike many other obfuscators it does not employ JavaScript for encoding, which significantly increases the number of web browsers that will be able to open scrambled documents without distortion. Use this software to protect your online content from unauthorized copying, reverse engineering and from webbots collecting email addresses and other personal data.
+
+COMPATABILITY:
+================
+Windows NT 4.0/2000/XP/2003 Server
+
+ScrEnc is shareware software.
+(To check registration price install it first, then go to Help->Register, then click "Check online" button.)
+
+This package includes a demo copy only.
+It's free to download at: www.dennisbabkin.com/php/download.php?what=ScrEnc
+
+
+Thank you for choosing Scripts Encryptor...

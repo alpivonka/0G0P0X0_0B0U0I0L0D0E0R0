@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: index.html,v 1.2 2007/02/25 01:24:02 mcd Exp $ -->
+<!-- Copyright 2007 Marengo Ltd.  This code (not the GMaps API) is released under the GPL -->
+<!-- Martyn Davis www.marengo-ltd.com -->
+<!-- the xmlns:v reference to M$ below is required for IE compatibility -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>
+	Back Roads GPS Route Planner
+	</title>
+	<meta name="description" content="cycling, gps, running, garmin gps, running shoes, running shorts, cycling shoes, cycling shorts, running training, marathon running, bicycling, cycling apparel, cycling tights, cycle trader, moto gp, magellan gps, gps tracking, cycling short, gps software, cycling bike, bluetooth gps, carbon cycle, gps navigation, women's cycling, cycle world, free running, gps systems, motor cycles, gps receiver, gps reviews, cycle gear, gps coordinates, gps system, gps review, motor cycle, portable gps, handheld gps, garmin edge, cycling jersey, cycling news, gps maps, running shoe, car gps, bicycling magazine, best gps, cycling jerseys, gps map, gps locator, gps units, usb gps, tom tom gps, pda gps, cycle news, gps antenna, custom cycles, lowrance gps, palm gps, running gear, pro cycling, running track, laptop gps, cycle salvage, gps navigator, running program, gps watch, cycling tv, pocket pc gps, marine gps, gps navigation system, gps phone, bluetooth gps receiver, tomtom gps, cycle parts" />
+    
+	<script src="http://maps.google.com/maps?file=api&amp;v=3.x&amp;key=ABQIAAAAlaTK9tNCjszrbJcL6YZxoBRT1TWJh36I6kIR2H0V_saOI-6s7hSQS3ikDmfHqp3iHyIggiTxvNzw_A" type="text/javascript"></script>    
+	<link rel="stylesheet" type="text/css" href="../css/map.css" /> 
+	<link rel="stylesheet" type="text/css" href="../css/menu.css" /> 
+	<script type="text/javascript" src="js/GPXLine.js"></script>
+	<!--script src="js/OpenLayers-2.8/OpenLayers.js"></script -->
+	<script src="js/OpenLayers-2.13/lib/OpenLayers.js"></script>
+	<script type="text/javascript" src="js/popup.js"></script>
+	<script type="text/javascript" src="js/state.js"></script>
+	<script type="text/javascript" src="js/menu.js"></script>
+	<script type="text/javascript" src="js/wms236.js"></script>
+	<script type="text/javascript" src="js/map2.js"></script>
+	<script type="text/javascript" src="js/gpx1.js"></script>
+	 
+</head>
+<body onload="load()" onunload="GUnload()" bgcolor="black">
+<!--Menu -->
+<div style="background-color:#E4E4E4;">
+<ul id="qm0" class="qmmc" style="width: auto; float: left;">
+
+	<li><a class="qmparent">File</a>
+
+		<ul>
+		<li><a href="javascript:generate_gpx(0);">Generate GPX File</a></li>
+		
+		<li><a href="javascript:show_load();">Upload GPX File</a></li>
+		
+		</ul>
+	</li>
+
+	<li><a class="qmparent">Tools</a>
+
+		<ul>
+		<li><a href="javascript:clearRoute(true);">Clear all routes/tracks from map and start fresh</a></li>
+		<li><a href="javascript:goHome(); close_popup('idDivOptionsPopUp');">Moves map to your "home" location.</a></li>
+		<li><a href="javascript:saveMapPosition();">Save current map position as your "home" location.</a></li>
+		<li><a href="javascript:document.getElementById('route-track-box').innerHTML=getRouteInfo();show_route_track();">Show My Route/Tracks List.</a></li>
+		<li><a href="javascript:toggleLines();">Toggle lines on/off between waypoints.</a></li>
+		</ul></li>
+
+	<li><a class="qmparent">Help</a>
+		<ul>
+		
+		<li><a class="qmparent">Contact Information</a>
+			<ul>
+			<li><a href="http://www.mantisbt.org/demo/my_view_page.php" title="Find a bug, please report it to us.">Bug Submission</a></li>
+
+			<li><a href="javascript:show_contact_box();">Contact Us</a>
+			</li><li><a href="javascript:void(0);" title="Send us your suggestions for new functionality.">Request New Functionality</a></li>
+			</ul>
+		</li>
+		<li><span class="qmdivider qmdividerx"/></li>
+		<li><a href="javascript:show_help();">FAQ</a></li>
+		<li><a href="javascript:show_help();">Help</a></li>
+		</ul>
+	</li>
+
+<!--li class="qmclear"></li--></ul>
+<div style="float: right; 
+		border-width:4px 0px 4px 0px;
+		padding:5px 40px 5px 8px;">
+	<BUTTON TYPE="submit" title="Add New Route" onclick="addNewGPX(1)">
+		<IMG SRC="../img/route.png" ALIGN="absmiddle">
+  	</BUTTON>
+	<BUTTON TYPE="submit" title="Add New Track" onclick="addNewGPX(2)">
+		<IMG SRC="../img/track2.png" ALIGN="absmiddle">
+  	</BUTTON>
+	Route Name: <input id="txtRouteName" type="text" size="12" maxlength="10" value="New Route">
+	Search: <input id="txtGeocoder" type="text" size="50" maxlength="255" onkeypress='geocoderCheckForEnter(event)'>
+	State<select name="stateSelectCMB" id="stateSelectCMB" onchange="populatetxtGeocoder()"></select>
+	&nbsp;&nbsp;<label for="" id="wayPointCount"></label> - Waypoints
+</div>
+<div style="clear: both;"></div>
+</div>
+
+<!-- geocoding: -->
+
+<table>
+<tr>
+<td valign='top'>
+<script language="javascript">
+<!--
+var screen_width = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth);
+var screen_height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
+document.write("<div id='map' style='width: " + (screen_width-24) + "px;height:" + (screen_height-40) + "px'>") ;
+// -->
+</script>
+</div>
+</td>
+<td valign='top'>
+<!--script language="javascript">
+<!--
+  var coords_height=(screen_height/2)-20;
+  if (coords_height<0) coords_height=100;
+  document.write("<div id='coords' style='background:#eee;padding-left:20px;width:250px;height:" + coords_height + "px;overflow:auto'>");
+// -->
+</script-->
+</div>
+</td>
+
+</tr></table>
+
+
+
+<!-- Show Road Type Menu -->
+<div class="roadType-box" id="gpxType-box" onkeypress='check_for_escape(event, "gpxType-box")'>
+	<h3>Create Route or Track</h3>
+	<hr>
+	<p>We need to know what you want to start work with.</p>
+	     <p>
+	      Either a Route <BUTTON TYPE="submit" title="Add New Route" onclick="addNewGPX(1);close_popup('gpxType-box');">
+		<IMG SRC="../img/route.png" ALIGN="absmiddle">
+		</BUTTON> 
+		or a Track <BUTTON TYPE="submit" title="Add New Track" onclick="addNewGPX(2);close_popup('gpxType-box');">
+			<IMG SRC="../img/track2.png" ALIGN="absmiddle">
+		</BUTTON>
+		<br>You can select your preference here by selecting a button above or close this window and select your preference from the buttons on the menu.
+	     </p>
+	     
+	<p style="text-align: right;">
+	<button type='button' id='optionsCloseButton' onclick='javascript:close_popup("gpxType-box")' >Close</button>
+	</p>
+</div>
+
+
+
+<!--  --- SHOW GPX LOAD BOX --- -->
+</div>
+<div class="xmlload-box" id="xmlload-box" onkeypress='check_for_escape(event, "xmlload-box")'>
+To import a GPX file, paste its contents here and click OK.
+
+<textarea id="loadTextArea" style='width:590px;height:430px' onkeypress='check_for_escape(event, "xmlload-box")'>
+</textarea>
+<p style="text-align: right;">
+<button type='button' onclick='javascript:load_gpx()' id='loadOKButton'>OK</button> &nbsp;
+<button type='button' onclick='javascript:close_popup("xmlload-box")' >Cancel</button>
+</p>
+</div>
+
+
+<!--  --- SHOW GPX SAVE BOX --- -->
+<div class="xmlsave-box" id="xmlsave-box">
+To save, copy the text below, paste it into a text editor, and save from there.
+<textarea id="xml-textarea" style='width:590px;height:430px' onkeypress='check_for_escape(event, "xmlsave-box")'>
+
+</textarea>
+<p style="text-align: right;">
+<!--button type='button' onclick='javascript:generate_gpx(2)' title='Strip non-commented waypoints'>Strip</button --> &nbsp;
+<button type='button' onclick='javascript:generate_gpx(1)' title='Reverse the waypoints for a return route'>Reverse</button> &nbsp;
+<button type='button' onclick='javascript:close_popup("xmlsave-box")' >Close</button>
+</p>
+</div>
+
+<!-- Contact Us Box -->
+<div class="roadType-box" id='contact-us-box' onkeypress='check_for_escape(event, "contact-us-box")'>
+<b>Welcome to XXX</b><hr>
+<p style="text-align: right;">
+<a id="aboutClose" href="javascript:close_popup('contact-us-box');">close</a>&nbsp;
+</p>
+</div>
+
+
+<!--  --- SHOW HELP BOX --- -->
+<div class="about-box" id="about-box" onkeypress='check_for_escape(event, "about-box")'>
+<BR>This program (not Google Maps) is released under the 
+<a target='_new' href='http://www.gnu.org/licenses/gpl.txt'>GPL</a><BR><HR>
+Quick Help:
+<ul>
+    <li>Click on the map to add a waypoint.  Enter some text against it on the list to the right of the map.
+    Click the waypoint again to remove it.</li>
+    <li>To save a GPX file, press "Display GPX" and copy and paste the displayed XML to a text editor, and then save it.</li>
+    <li>To upload a GPX file to your GPS, you will need a copy of
+    <a target='_new' href='http://www.gpsbabel.org'>gpsbabel</a> (tested with v1.2.8 beta) and
+    <a href='gps_upload.sh'>my upload script</a>.</li>
+
+    <li>You can load a previously-saved GPX file by pressing the "Load" button and pasting its contents into the dialog.</li>
+    <li><a target='_new' href='help.html'>See here for the full help page</a></li>
+    <li><a target='_new' href='http://www.marengo-ltd.com/blog/'>See here for blog</a></li>
+</ul>
+<p style="text-align: right;">
+<a id="aboutClose" href="javascript:close_popup('about-box');">close</a>&nbsp;
+</p>
+</div>
+
+<!-- SHOW ROUTES/TRACKS USER HAS CREATED -->
+<div class="about-box" id="route-track-box" onkeypress='check_for_escape(event, "route-track-box")'>
+</div>
+
+<!--  --- MOTD BOX --- -->
+<div class="motd-box" id="motd-box" onkeypress='check_for_escape(event, "motd-box")'>
+<b>Welcome to XXX</b><hr>
+<p>
+We are working to make XXX into a tool to in which you will use.
+At present XXX will only allow you to work on one route consisting of up to 1000 waypoints. This is due to the fact that XXX is running on your machine and it's memory is limited to what your browser exposes.
+</p>
+
+User Name: <input id="txtUserName" type="text" size="12" maxlength="10" value="">
+Password : <input id="txtPassword" type="password" size="12" maxlength="10" value="">
+<p style="text-align: right;">
+<button type='button' onclick='javascript:close_popup("xmlsave-box")' >Login</button>
+<a id="aboutClose" href="javascript:close_popup('motd-box');">close</a>&nbsp;
+</p>
+</div>
+
+
+
+<div class="wait-box" id="wait-box">
+
+<b>PLEASE WAIT...</b>
+</div>
+<BR><BR>
+<p style="font-size:1%;color:white">
+<!-- google_ad_section_start -->
+cycling, gps, running, garmin gps, running shoes, running shorts, cycling shoes, cycling shorts, running training, marathon running, bicycling, cycling apparel, cycling tights, cycle trader, moto gp, magellan gps, gps tracking, cycling short, gps software, cycling bike, bluetooth gps, carbon cycle, gps navigation, women's cycling, cycle world, free running, gps systems, motor cycles, gps receiver, gps reviews, cycle gear, gps coordinates, gps system, gps review, motor cycle, portable gps, handheld gps, garmin edge, cycling jersey, cycling news, gps maps, running shoe, car gps, bicycling magazine, best gps, cycling jerseys, gps map, gps locator, gps units, usb gps, tom tom gps, pda gps, cycle news, gps antenna, custom cycles, lowrance gps, palm gps, running gear, pro cycling, running track, laptop gps, cycle salvage, gps navigator, running program, gps watch, cycling tv, pocket pc gps, marine gps, gps navigation system, gps phone, bluetooth gps receiver, tomtom gps, cycle parts
+<!-- google_ad_section_end -->
+</p>
+</span>
+</body>
+
+</html>
+
+

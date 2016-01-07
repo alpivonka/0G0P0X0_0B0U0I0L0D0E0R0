@@ -1,0 +1,10 @@
+1) On Generate GPX Route/Track Screen
+	a) Add field for # of Points per segment
+	b) Add button to Split Route. -- this functionality will be provided via an async call to a servlet to perform this work.
+	c) This fuction will take the route/track and break it into segments with the number of points specified.
+	This is due to the fact that each GPS manufacture has different limits on the number of pints within a route or track and the end user must know this information.
+	To help the end user with finding this information, provide a FAQ/Help link that explains this and provide links to the different GPS manufactures websites.
+2) System should be able to allow user to create both 1..* route/tracks in the same session:
+	1) User should be able to selected an icon to create a route or a track. Specific icons.
+	2) End user should be able to select an existing route/track and continue working on it.
+	3) Must set limit of number of routes/tracks a end user can work with at one time.

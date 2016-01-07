@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<gpx version="1.1"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 
+  http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <name>New Route</name>
+  <trk>
+<trkseg>
+    <trkpt lat="40.28476388038702" lon="-86.70684814453125"></trkpt>
+    <trkpt lat="40.28476388038702" lon="-86.70684814453125"></trkpt>
+    <trkpt lat="40.25332852309839" lon="-86.6546630859375"></trkpt>
+    <trkpt lat="40.25332852309839" lon="-86.6546630859375"></trkpt>
+    <trkpt lat="40.23026664265011" lon="-86.6107177734375"></trkpt>
+    <trkpt lat="40.23026664265011" lon="-86.6107177734375"></trkpt>
+    <trkpt lat="40.19670806662855" lon="-86.58599853515625"></trkpt>
+    <trkpt lat="40.19670806662855" lon="-86.58599853515625"></trkpt>
+    <trkpt lat="40.163132874122084" lon="-86.5557861328125"></trkpt>
+    <trkpt lat="40.163132874122084" lon="-86.5557861328125"></trkpt>
+    <trkpt lat="40.14843850313905" lon="-86.53106689453125"></trkpt>
+    <trkpt lat="40.14843850313905" lon="-86.53106689453125"></trkpt>
+    <trkpt lat="40.110638378278054" lon="-86.517333984375"></trkpt>
+    <trkpt lat="40.110638378278054" lon="-86.517333984375"></trkpt>
+    <trkpt lat="40.06651166669527" lon="-86.49810791015625"></trkpt>
+    <trkpt lat="40.06651166669527" lon="-86.49810791015625"></trkpt>
+    <trkpt lat="40.047591462658794" lon="-86.495361328125"></trkpt>
+    <trkpt lat="40.047591462658794" lon="-86.495361328125"></trkpt>
+</trkseg>
+  </trk>
+  <rte>
+    <rtept lat="40.416632788688474" lon="-86.13006591796875">
+      <name>A0</name>
+    </rtept>
+    <rtept lat="40.416632788688474" lon="-86.13006591796875">
+      <name>A1</name>
+    </rtept>
+    <rtept lat="40.27847797779299" lon="-86.13006591796875">
+      <name>A2</name>
+    </rtept>
+    <rtept lat="40.27847797779299" lon="-86.13006591796875">
+      <name>A3</name>
+    </rtept>
+    <rtept lat="40.13584079730779" lon="-86.1273193359375">
+      <name>A4</name>
+    </rtept>
+    <rtept lat="40.13584079730779" lon="-86.1273193359375">
+      <name>A5</name>
+    </rtept>
+    <rtept lat="40.123240755628686" lon="-86.319580078125">
+      <name>A6</name>
+    </rtept>
+    <rtept lat="40.123240755628686" lon="-86.319580078125">
+      <name>A7</name>
+    </rtept>
+    <rtept lat="40.04128356064847" lon="-86.28662109375">
+      <name>A8</name>
+    </rtept>
+    <rtept lat="40.04128356064847" lon="-86.28662109375">
+      <name>A9</name>
+    </rtept>
+  </rte>
+</gpx>

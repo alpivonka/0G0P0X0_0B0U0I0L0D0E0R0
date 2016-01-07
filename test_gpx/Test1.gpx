@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<gpx version="1.1"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 
+  http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <name>New Route</name>
+  <rte>
+    <rtept lat="38.384929506041594" lon="-86.77963256835938">
+      <name>0</name>
+    </rtept>
+    <rtept lat="38.39044617115423" lon="-86.79851531982422">
+      <name>1</name>
+    </rtept>
+    <rtept lat="38.41735069914022" lon="-86.84469223022461">
+      <name>2</name>
+    </rtept>
+    <rtept lat="38.423268351254656" lon="-86.84486389160156">
+      <name>3</name>
+    </rtept>
+    <rtept lat="38.42649595716835" lon="-86.86906814575195">
+      <name>4</name>
+    </rtept>
+    <rtept lat="38.459570600877875" lon="-86.86752319335938">
+      <name>5</name>
+    </rtept>
+    <rtept lat="38.466963265081475" lon="-86.8685531616211">
+      <name>6</name>
+    </rtept>
+    <rtept lat="38.466963265081475" lon="-86.88915252685547">
+      <name>7</name>
+    </rtept>
+    <rtept lat="38.44841296404506" lon="-86.8967056274414">
+      <name>8</name>
+    </rtept>
+    <rtept lat="38.45217717896972" lon="-86.90683364868164">
+      <name>9</name>
+    </rtept>
+    <rtept lat="38.45042953217475" lon="-86.93120956420898">
+      <name>10</name>
+    </rtept>
+    <rtept lat="38.43752252238674" lon="-86.93841934204102">
+      <name>11</name>
+    </rtept>
+    <rtept lat="38.43752252238674" lon="-86.89395904541016">
+      <name>12</name>
+    </rtept>
+  </rte>
+</gpx>
